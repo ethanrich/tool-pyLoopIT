@@ -7,9 +7,8 @@ class LoopIT(Client):
         # take a message from the user and format to JSON structure expected by the Loop IT
         pass
 
-
-    def query():
-        pass
+    def query(self):
+        self.request()
 
     def set_parameters():
         pass

@@ -3,7 +3,7 @@ from loopit import LoopIT
 if __name__ == "__main__":
 
     # initialize the client
-    client = LoopIT(host='127.0.0.1', port=1219)
+    loopit = LoopIT(host='127.0.0.1', port=1219)
     
     # query the Loop IT
     
@@ -12,4 +12,4 @@ if __name__ == "__main__":
     # start stimulation
     
     # stop stimulation
-    client.request()
+    loopit.query()
