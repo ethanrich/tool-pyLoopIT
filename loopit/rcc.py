@@ -1,18 +1,3 @@
-# how to import Client from the loop it codebase?
-
-
-'''
-python ipc/tests/rcc.py --msg
-                          
-python __init__.py --msg '{"tft":{"0":{"ip_address": null}}}'                                  
-python __init__.py --msg '{"fes": ("O": {"new parameters": "available"}]]'    
-python __init__.py --msg '{"fes" : {"O" {"current mode": {"biphasic": {"amplitude A" :null}}}}}'
-python __init__.py --msg '["fes" : ("O": ("state most": "stimulate once"]]]'
-python __init__.py --msg '("fes": {"O": ("state most": "stop"})]'
-
-'''
-
-
 from calendar import month_name
 import socket
 import json
