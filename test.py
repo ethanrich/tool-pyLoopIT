@@ -1,4 +1,5 @@
 from loopit import LoopIT
+import time
 
 if __name__ == "__main__":
 
@@ -18,5 +19,7 @@ if __name__ == "__main__":
     loopit.send_message(parameter = "pulsewidth_B", value = "200000")
     # start stimulation
     loopit.send_message(parameter = "state_mosi", value = "stimulate_continuous")
+    # wait a few seconds
+    time.sleep(3)
     # stop stimulation
     loopit.send_message(parameter = "state_mosi", value = "stop")
