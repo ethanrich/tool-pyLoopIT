@@ -4,7 +4,7 @@ from distutils.core import setup
 from pathlib import Path
 
 
-with (Path(__file__).parent / "readme.md").open("r") as f:
+with (Path(__file__).parent / "README.md").open("r") as f:
     long_description = f.read()
 
 with (Path(__file__).parent / "requirements.txt").open("r") as f:
@@ -14,18 +14,17 @@ with (Path(__file__).parent / "requirements.txt").open("r") as f:
 packages = setuptools.find_namespace_packages(exclude=["tests*", "docs*", "htmlcov*"])
 
 setup(
-    name="neuropraxpy",
+    name="loopit",
     version="0.1.0",
-    description="read binary EEG files to Python",
+    description="interface with LoopIT",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Ethan Rich",
     author_email="ethan.rich@neurocaregroup.com",
-    url="https://github.com/ethanrich/tool-neuropraxpy.git",
-    download_url="https://github.com/ethanrich/tool-neuropraxpy.git",
+    url="https://github.com/ethanrich/tool-pyLoopIT.git",
+    download_url="https://github.com/ethanrich/tool-pyLoopIT.git",
     license="MIT",
     packages=find_packages(),
-    entry_points={'console_scripts': ['neuropraxpy=neuropraxpy.cli.main:main']},
     install_requires=requirements,
     classifiers=[
         "Development Status :: 3 - Alpha",

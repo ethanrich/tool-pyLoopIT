@@ -1,4 +1,4 @@
-from wrapper import LoopIT
+from loopit.wrapper import LoopIT
 
 # if __name__ == "__main__":
 

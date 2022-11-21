@@ -1,0 +1,21 @@
+Metadata-Version: 2.1
+Name: loopit
+Version: 0.1.0
+Summary: interface with LoopIT
+Home-page: https://github.com/ethanrich/tool-pyLoopIT.git
+Download-URL: https://github.com/ethanrich/tool-pyLoopIT.git
+Author: Ethan Rich
+Author-email: ethan.rich@neurocaregroup.com
+License: MIT
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+
+# tool-pyLoopIT
+
+This is a Python wrapper that simplifies interfacing with a LoopIT device. You can update parameters, start stimulation, and stop stimulation from within your own programs.  

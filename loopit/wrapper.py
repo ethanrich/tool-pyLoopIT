@@ -1,4 +1,4 @@
-from rcc import Client
+from loopit.rcc import Client
 
 class LoopIT(Client):
 ### Further simplified methods for use in research setting
