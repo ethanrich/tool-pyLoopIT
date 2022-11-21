@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/ethanrich/tool-pyLoopIT/blob/main/neuroConn.png?raw=true" alt="logo"/>
+</p>
+
 # tool-pyLoopIT
 
 This is a Python wrapper that simplifies interfacing with a LoopIT device from within your Python experiment code. You can update parameters, start stimulation, and stop stimulation with simple class method calls.
