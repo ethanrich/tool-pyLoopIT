@@ -12,7 +12,12 @@ git clone https://github.com/ethanrich/tool-pyLoopIT.git
 Running this program assumes that you have a LoopIT device or you have mocked one for development.
 
 # Usage
-Please see test.py.
+Please run test.py.
+
+```
+python test.py
+```
+
 In this file, you will see how certain values must be given to connect to the LoopIT. Then, you can send any command you want as a "parameter" and "value". All parameters and values must be strings.
 
 # Parameters
