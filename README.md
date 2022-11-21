@@ -13,6 +13,11 @@ Running this program assumes that you have a LoopIT device or you have mocked on
 
 # Usage
 Please see test.py.
-In this file, you will see how certain values must be given to connect to the LoopIT. Then, you can send any command you want as a "parameter" and "value".
+In this file, you will see how certain values must be given to connect to the LoopIT. Then, you can send any command you want as a "parameter" and "value". All parameters and values must be strings.
+
+# Parameters
+
+Please see your LoopIT device guide for a list of parameters and values. 
+
 
 
