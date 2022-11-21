@@ -24,17 +24,11 @@ class LoopIT(Client):
     def query(self):
         self.request()
 
-    def set_parameters(self, parameter, value):
+    def send_message(self, parameter, value):
         
         msg = '{' + self.module_name + ': {' + self.module_index + ': {' + self.mode_name +  \
         ': {' + parameter + ': '+ value +'}}}}'
         
         self.request(msg=msg)
-
-    def start_stimulation():
-        pass
-
-    def stop_stimulation():
-        pass
     
     

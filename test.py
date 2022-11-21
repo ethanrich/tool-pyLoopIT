@@ -11,8 +11,8 @@ if __name__ == "__main__":
     # query the Loop IT
     loopit.query()
     # set some parameters
-    loopit.set_parameters(parameter = "inter_pulse_interval", value = "4000000000")
+    loopit.send_message(parameter = "inter_pulse_interval", value = "4000000000")
     # start stimulation
-    loopit.set_parameters(parameter = "state_mosi", value = "stimulate_once")
+    loopit.send_message(parameter = "state_mosi", value = "stimulate_once")
     # stop stimulation
-    loopit.set_parameters(parameter = "state_mosi", value = "stop")
+    loopit.send_message(parameter = "state_mosi", value = "stop")
