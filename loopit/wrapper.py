@@ -41,6 +41,10 @@ class LoopIT(Client):
             pass
         else:
             raise Exception("Please use only valid parameters: " + ", ".join(valid_parameters))
+        
+    def check_response(self, response):
+        if None in response.values():
+            print("Warning: LoopIT returned null for an invalid parameter. Check parameters and values, or make sure your device is connected and turned on.")
 
     def query(self):
         # test the connection
@@ -50,7 +54,8 @@ class LoopIT(Client):
         self.check_parameter(parameter)
         msg = self.build_message(parameter, value)
         # send the message
-        self.request(msg=msg)
+        response = self.request(msg=msg)
+        self.check_response(response)
         
     def start_stimulation(self):
         msg = self.build_message("state_mosi", "stimulate_continuous")
