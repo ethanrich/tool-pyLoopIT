@@ -30,7 +30,4 @@ Please see your LoopIT device guide for a list of parameters and values.
 
 # Updates
 
-* TODO:
-    * Type and value checking for LoopIT class methods
-    * Helpful error messages
-    * Testing on actual LoopIT platform
+You can request new features by creating an Issue.
