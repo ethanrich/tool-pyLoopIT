@@ -37,18 +37,18 @@ class LoopIT(Client):
     def set_mode(self, module_name, module_index, mode_name):
         self.module_name, self.module_index, self.mode_name = module_name, module_index, mode_name
         
-    def build_message(self, parameter, value):
-        # build the message content here
-        msg = '{' + self.module_name + ': {' + self.module_index + ': {' + self.mode_name +  \
-        ': {' + parameter + ': ' + value + '}}}}'
-        return msg
-    
     def check_parameter(self, parameter):
         # check that given parameters are found in the FES module
         if parameter in valid_parameters:
             pass
         else:
             raise Exception("Please use only valid parameters: " + ", ".join(valid_parameters))
+        
+    def build_message(self, parameter, value):
+        # build the message content here
+        msg = '{' + self.module_name + ': {' + self.module_index + ': {' + self.mode_name +  \
+        ': {' + parameter + ': ' + value + '}}}}'
+        return msg
         
     def check_response(self, response):
         # check for null values in LoopIT response
@@ -57,7 +57,6 @@ class LoopIT(Client):
 
     def send_message(self, parameter, value):
         # update parameters and their values
-        
         self.check_parameter(parameter)
         msg = self.build_message(parameter, value)
         # send the message
@@ -66,14 +65,12 @@ class LoopIT(Client):
         
     def start_stimulation(self):
         # trigger start of stimulation with the current parameters
-        
         msg = self.build_message("state_mosi", "stimulate_continuous")
         # send the message
         self.request(msg=msg)
     
     def stop_stimulation(self):
         # stop stimulation 
-        
         msg = self.build_message("state_mosi", "stop")
         # send the message
         self.request(msg=msg)
