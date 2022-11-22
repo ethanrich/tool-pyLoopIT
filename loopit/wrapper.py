@@ -25,10 +25,10 @@ class LoopIT(Client):
         self.request()
 
     def send_message(self, parameter, value):
-        
+        # build the message content here
         msg = '{' + self.module_name + ': {' + self.module_index + ': {' + self.mode_name +  \
         ': {' + parameter + ': '+ value +'}}}}'
-        
+        # send the message
         self.request(msg=msg)
     
     
