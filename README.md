@@ -13,10 +13,10 @@ git clone https://github.com/ethanrich/tool-pyLoopIT.git
 ```
 
 # Prerequisites
-Running this program assumes that you have a LoopIT device or you have mocked one for development.
+Running this program assumes that you have a LoopIT device connected or you have mocked one for development.
 
 # Usage
-Please run test.py.
+After you have connected your LoopIT device or booted the development servers, please run test.py.
 
 ```
 python test.py
