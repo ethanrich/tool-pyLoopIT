@@ -18,8 +18,8 @@ if __name__ == "__main__":
     loopit.send_message(parameter = "pulsewidth_A", value = "200000") # 200 microsecond pulse width
     loopit.send_message(parameter = "pulsewidth_B", value = "200000")
     # start stimulation
-    loopit.send_message(parameter = "state_mosi", value = "stimulate_continuous")
+    loopit.start_stimulation()
     # wait a few seconds
     time.sleep(3)
     # stop stimulation
-    loopit.send_message(parameter = "state_mosi", value = "stop")
+    loopit.stop_stimulation()
