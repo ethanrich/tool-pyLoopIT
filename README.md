@@ -1,5 +1,6 @@
 <p align="center">
-  <img src="https://github.com/ethanrich/tool-pyLoopIT/blob/main/neuroConn.png?raw=true" alt="logo"/>
+  <img src="https://github.com/ethanrich/tool-pyLoopIT/blob/main/neuroConn.png?raw=true" alt="logo"
+        width="400" height="200"/>
 </p>
 
 # tool-pyLoopIT
