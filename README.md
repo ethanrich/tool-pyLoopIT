@@ -28,5 +28,11 @@ In this file, you will see how certain values must be given to connect to the Lo
 
 Please see your LoopIT device guide for a list of parameters and values. 
 
+# Updates
 
+TODO:
+-> Type and value checking for LoopIT class methods
+-> Helpful error messages
+-> Specialized class methods for starting and stopping stimulation (possibly other functionalities as well)
+-> Testing on actual LoopIT platform
 
