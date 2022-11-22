@@ -33,5 +33,4 @@ Please see your LoopIT device guide for a list of parameters and values.
 * TODO:
     * Type and value checking for LoopIT class methods
     * Helpful error messages
-    * Specialized class methods for starting and stopping stimulation (possibly other functionalities as well)
     * Testing on actual LoopIT platform
