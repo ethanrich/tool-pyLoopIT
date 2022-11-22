@@ -15,6 +15,15 @@ order of the JSON message nesting is:
 
 from loopit.rcc import Client
 
+valid_parameters = ["amplitude_A",
+                    "amplitude_B",
+                    "pulsewidth_A",
+                    "pulsewidth_B",
+                    "inter_pulse_interval",
+                    "inter_burst_interval",
+                    "pulses_per_burst"
+                    ]
+
 class LoopIT(Client):
 ### Further simplified methods for use in research setting
     
@@ -26,12 +35,19 @@ class LoopIT(Client):
         msg = '{' + self.module_name + ': {' + self.module_index + ': {' + self.mode_name +  \
         ': {' + parameter + ': ' + value + '}}}}'
         return msg
+    
+    def check_parameter(self, parameter):
+        if parameter in valid_parameters:
+            pass
+        else:
+            raise Exception("Please use only valid parameters: " + ", ".join(valid_parameters))
 
     def query(self):
         # test the connection
         self.request()
 
     def send_message(self, parameter, value):
+        self.check_parameter(parameter)
         msg = self.build_message(parameter, value)
         # send the message
         self.request(msg=msg)
