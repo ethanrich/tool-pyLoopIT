@@ -20,14 +20,29 @@ class LoopIT(Client):
     
     def set_mode(self, module_name, module_index, mode_name):
         self.module_name, self.module_index, self.mode_name = module_name, module_index, mode_name
+        
+    def build_message(self, parameter, value):
+        # build the message content here
+        msg = '{' + self.module_name + ': {' + self.module_index + ': {' + self.mode_name +  \
+        ': {' + parameter + ': ' + value + '}}}}'
+        return msg
 
     def query(self):
+        # test the connection
         self.request()
 
     def send_message(self, parameter, value):
-        # build the message content here
-        msg = '{' + self.module_name + ': {' + self.module_index + ': {' + self.mode_name +  \
-        ': {' + parameter + ': '+ value +'}}}}'
+        msg = self.build_message(parameter, value)
+        # send the message
+        self.request(msg=msg)
+        
+    def start_stimulation(self):
+        msg = self.build_message("state_mosi", "stimulate_continuous")
+        # send the message
+        self.request(msg=msg)
+    
+    def stop_stimulation(self):
+        msg = self.build_message("state_mosi", "stop")
         # send the message
         self.request(msg=msg)
     
