@@ -11,6 +11,8 @@ if __name__ == "__main__":
     
     # query the Loop IT
     loopit.query()
+    # get device configuration
+    loopit.get_device_config()
     # set some parameters
     loopit.send_message(parameter = "inter_pulse_interval", value = "20000000") # 50 hz == 20000000 nanosecond period
     loopit.send_message(parameter = "amplitude_A", value = "1000000") # one milliampere of current

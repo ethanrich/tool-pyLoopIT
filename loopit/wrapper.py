@@ -26,6 +26,13 @@ valid_parameters = ["amplitude_A",
 
 class LoopIT(Client):
 ### Further simplified methods for use in research setting
+
+    def query(self):
+        # test the connection
+        self.request()
+
+    def get_device_config(self):
+        self.request(msg='{"?": null}')
     
     def set_mode(self, module_name, module_index, mode_name):
         self.module_name, self.module_index, self.mode_name = module_name, module_index, mode_name
@@ -47,10 +54,6 @@ class LoopIT(Client):
         # check for null values in LoopIT response
         if None in response.values():
             print("Warning: LoopIT returned null for an invalid parameter. Check parameters and values, or make sure your device is connected and turned on.")
-
-    def query(self):
-        # test the connection
-        self.request()
 
     def send_message(self, parameter, value):
         # update parameters and their values
