@@ -8,7 +8,7 @@ order of the JSON message nesting is:
 -> trigger one stimulation
 '{"fes": {"0": {"current_mode": {"state mosi": "stimulate_once"}}}}'
 
--> trigger one stimulation
+-> stop stimulation
 '{"fes": {"0": {"current_mode": {"state mosi": "stop"}}}}'
 
 '''
