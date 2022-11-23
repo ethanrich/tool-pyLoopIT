@@ -16,17 +16,11 @@ order of the JSON message nesting is:
 from loopit.rcc import Client
 import json
 
-valid_parameters = ["amplitude_A",
-                    "amplitude_B",
-                    "pulsewidth_A",
-                    "pulsewidth_B",
-                    "inter_pulse_interval",
-                    "inter_burst_interval",
-                    "pulses_per_burst"
-                    ]
-
 class LoopIT(Client):
 ### Further simplified methods for use in research setting
+
+    def set_mode(self, module_name, module_index, mode_name):
+        self.module_name, self.module_index, self.mode_name = module_name, module_index, mode_name
 
     def query(self):
         # test the connection
@@ -64,17 +58,6 @@ class LoopIT(Client):
         # set the parameters as class attributes
         for k in formatted_parameters:
             setattr(self, k, formatted_parameters[k])
-
-    
-    def set_mode(self, module_name, module_index, mode_name):
-        self.module_name, self.module_index, self.mode_name = module_name, module_index, mode_name
-        
-    def check_parameter(self, parameter):
-        # check that given parameters are found in the FES module
-        if parameter in valid_parameters:
-            pass
-        else:
-            raise Exception("Please use only valid parameters: " + ", ".join(valid_parameters))
         
     def build_message(self, parameter, value):
         # build the message content here
@@ -89,7 +72,6 @@ class LoopIT(Client):
 
     def send_message(self, parameter, value):
         # update parameters and their values
-        self.check_parameter(parameter)
         msg = self.build_message(parameter, value)
         # send the message
         response = self.request(msg=msg)
