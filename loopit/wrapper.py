@@ -40,13 +40,13 @@ class LoopIT(Client):
             # format
             formatted_parameters = {}
             for k in module_parameters.keys():
-                formatted_parameters[k] =  {'value': module_parameters[k]['encoding']['valid'][0],
+                formatted_parameters[k] =  {'valid': module_parameters[k]['encoding']['valid'][0],
                                             'unit': module_parameters[k]['encoding']['unit']}
             # show a pretty message
             print('FES module found. Valid parameters and values are: ')
             for p, v in formatted_parameters.items():
                 print(p + ":")
-                print("    valid value: " + str(v['value']) + " in units: " + v['unit'])
+                print("    valid value: " + str(v['valid']) + " in units: " + v['unit'])
                 
             # add the parameters as class attributes dynamically
             self.add_parameter_attributes(formatted_parameters)
@@ -57,8 +57,8 @@ class LoopIT(Client):
     def add_parameter_attributes(self, formatted_parameters):
         # set the parameters as class attributes
         for k in formatted_parameters:
-            setattr(self, k, formatted_parameters[k])
-        
+            setattr(self, k, 0) # initialize the values of each parameter as 0 for now #NOTE might only work for FES module
+                    
     def build_message(self, parameter, value):
         # build the message content here
         msg = '{' + self.module_name + ': {' + self.module_index + ': {' + self.mode_name +  \
