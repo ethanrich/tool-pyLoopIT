@@ -14,6 +14,7 @@ order of the JSON message nesting is:
 '''
 
 from loopit.rcc import Client
+import json
 
 valid_parameters = ["amplitude_A",
                     "amplitude_B",
@@ -32,7 +33,30 @@ class LoopIT(Client):
         self.request()
 
     def get_device_config(self):
-        self.request(msg='{"?": null}')
+        # query the LoopIT for module parameters for the user to later update
+        response = self.request(msg='{"?": null}')
+        self.update_attrs_from_query(response)
+        
+    def update_attrs_from_query(self, response):
+        # grab module parameters
+        if self.module_name == 'fes' and 'fes' in response.keys():
+            module_parameters = response['mosi']['fes']['current_mode']['encoding']['biphasic']['fields']
+            del module_parameters['reserved_2'] # not relevant to user
+            
+            # format
+            formatted_parameters = {}
+            for k in module_parameters.keys():
+                formatted_parameters[k] =  {'value': module_parameters[k]['encoding']['valid'][0],
+                                            'unit': module_parameters[k]['encoding']['unit']}
+            # show a pretty message
+            print('FES module found. Valid parameters and values are: ')
+            for p, v in formatted_parameters.items():
+                print(p + ":")
+                print("    valid value: " + str(v['value']) + " in units: " + v['unit'])
+        else:
+            # tell user that the fes module was not found in the response.
+            print('No modules found. Device not connected or device servers are mocked')
+            
     
     def set_mode(self, module_name, module_index, mode_name):
         self.module_name, self.module_index, self.mode_name = module_name, module_index, mode_name
