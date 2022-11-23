@@ -35,9 +35,9 @@ class LoopIT(Client):
     def get_device_config(self):
         # query the LoopIT for module parameters for the user to later update
         response = self.request(msg='{"?": null}')
-        self.update_attrs_from_query(response)
+        self.get_module_parameters(response)
         
-    def update_attrs_from_query(self, response):
+    def get_module_parameters(self, response):
         # grab module parameters
         if self.module_name == 'fes' and 'fes' in response.keys():
             module_parameters = response['mosi']['fes']['current_mode']['encoding']['biphasic']['fields']
@@ -53,10 +53,18 @@ class LoopIT(Client):
             for p, v in formatted_parameters.items():
                 print(p + ":")
                 print("    valid value: " + str(v['value']) + " in units: " + v['unit'])
+                
+            # add the parameters as class attributes dynamically
+            self.add_parameter_attributes(formatted_parameters)
         else:
-            # tell user that the fes module was not found in the response.
+            # tell user that the fes module was not found in the response
             print('No modules found. Device not connected or device servers are mocked')
             
+    def add_parameter_attributes(self, formatted_parameters):
+        # set the parameters as class attributes
+        for k in formatted_parameters:
+            setattr(self, k, formatted_parameters[k])
+
     
     def set_mode(self, module_name, module_index, mode_name):
         self.module_name, self.module_index, self.mode_name = module_name, module_index, mode_name
