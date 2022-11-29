@@ -1,0 +1,2 @@
+[console_scripts]
+loopit = loopit.gui.main:main
