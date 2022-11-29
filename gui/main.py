@@ -51,9 +51,9 @@ menubar = tk.Menu(root)
 
 def send_to_loopit_callback():
     # read the text boxes
-    amp = amplitude_switch.get()
-    pw = pw_text.get("1.0", tk.END)
-    ipi = ipi_text.get("1.0", tk.END)
+    amp = float(amplitude_switch.get())
+    pw = float(pw_text.get("1.0", tk.END))
+    ipi = float(ipi_text.get("1.0", tk.END))
     # convert amplitude from milliamps to 0.0000010 A
     converted_amp = amp * 30000000
     # convert pulse width from microseconds to nanoseconds
