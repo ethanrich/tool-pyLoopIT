@@ -35,24 +35,14 @@ canvas.place(x=0, y=0)
 img= (Image.open("assets/logo.jpg"))
 resized_image= img.resize((150,51), Image.ANTIALIAS)
 new_image= ImageTk.PhotoImage(resized_image)
-canvas.create_image(10,10, anchor=tk.NW, image=new_image)
-
-header = canvas.create_text(400.0, 50.0, text="LoopIT", fill="black", font=("Roboto-Bold", int(30.0)))
-info = canvas.create_text(400.0, 650, text="Stimulation Status", fill="black", font=("Roboto-Medium", 20))
-
 
 ######## Parameter controls
 
 amplitude_switch = tk.Scale(from_=0, to=30, orient=tk.HORIZONTAL, length=200, width=30, activebackground="#C25993"
                        , bg="#C25993", highlightcolor="#C25993", highlightbackground="#C25993", fg="white",
                        troughcolor="white")
-amplitude_label = canvas.create_text(270, 175, text="Amplitude (0-30 mA)", fill="black", font=("Roboto-Bold", 16))
-
 pw_text = tk.Text(root, height = 1, width = 5, font=("Roboto", 16))
-pw_label = canvas.create_text(235, 275, text="Pulse width (microseconds)", fill="black", font=("Roboto-Bold", 16))
-
 ipi_text = tk.Text(root, height = 1, width = 5, font=("Roboto", 16))
-ipi_label = canvas.create_text(295, 375, text="Frequency (Hz)", fill="black", font=("Roboto-Bold", 16))
 
 
 ######## Buttons
@@ -109,19 +99,28 @@ stop = tk.Button(text="STOP", font=("Roboto-Bold", 16), borderwidth=3, highlight
 # initialize stop as disabled
 stop["state"] = "disabled"
 
-######## Event loop
+######## Placement
+# logo and titles
+canvas.create_image(10,10, anchor=tk.NW, image=new_image)
+header = canvas.create_text(400.0, 50.0, text="LoopIT", fill="black", font=("Roboto-Bold", int(30.0)))
+info = canvas.create_text(400.0, 650, text="Stimulation Status", fill="black", font=("Roboto-Medium", 20))
 
+# parameter labels
+ipi_label = canvas.create_text(295, 375, text="Frequency (Hz)", fill="black", font=("Roboto-Bold", 16))
+pw_label = canvas.create_text(235, 275, text="Pulse width (microseconds)", fill="black", font=("Roboto-Bold", 16))
+amplitude_label = canvas.create_text(270, 175, text="Amplitude (0-30 mA)", fill="black", font=("Roboto-Bold", 16))
+
+# parameter inputs
 amplitude_switch.place(x=500, y=175, anchor=tk.CENTER)
 pw_text.place(x=425, y=275, anchor=tk.CENTER)
 ipi_text.place(x=425, y=375, anchor=tk.CENTER)
 send.place(x=400, y=500, anchor=tk.CENTER)
 
+# stim controls
 start.place(x=218, y=675, width=172, height=58)
 stop.place(x=418, y=675, width=172, height=58)
 
+######## Event loop
 quit = tk.Button(root, text="Exit", font=("Roboto-Bold", 14), borderwidth=3, highlightthickness=0, relief="raised", height=3, width=5, command=root.destroy)
 quit.place(x=700, y=20)
 root.mainloop()
-# running = True
-# while running:
-#     root.update()
