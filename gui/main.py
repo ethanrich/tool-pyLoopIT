@@ -67,16 +67,13 @@ def send_to_loopit_callback():
     
 send = tk.Button(text="Send to LoopIT", font=("Roboto-Bold", 16), borderwidth=3, highlightthickness=0, relief="raised", height=5, width=20, command=send_to_loopit_callback)
 
-start_img = tk.PhotoImage(file=f"assets/start.png")
-start = tk.Button(image=start_img, borderwidth=0, highlightthickness=0, relief="flat")
-
-end_img = tk.PhotoImage(file=f"assets/end.png")
-end = tk.Button(image=end_img, borderwidth=0, highlightthickness=0, relief="flat")
+start = tk.Button(text="START", font=("Roboto-Bold", 16), borderwidth=3, highlightthickness=0, relief="raised", height=5, width=20)
+stop = tk.Button(text="STOP", font=("Roboto-Bold", 16), borderwidth=3, highlightthickness=0, relief="raised", height=5, width=20)
 
 info = canvas.create_text(400.0, 650, text="Start Stimulation", fill="black", font=("Roboto-Medium", 20))
 
 # When started
-end["state"] = "disabled"
+stop["state"] = "disabled"
 
 
 ######## Set Stim status
@@ -91,9 +88,11 @@ def status_playing(yeter):
     status = yeter
     if status == "off":
         start["state"] = "normal"
+        stop["state"] = "disabled"
         canvas.itemconfig(info, text="STIM OFF", fill="white")
+        
     elif status == "on":
-        end["state"] = "normal"
+        stop["state"] = "normal"
         start["state"] = "disabled"
         canvas.itemconfig(info, text="STIM ON", fill="red", font=('Impact', -50))
 
@@ -101,7 +100,7 @@ def status_playing(yeter):
 
 ######## Event loop
 start.config(command=lambda: start_stimulation())
-end.config(command=lambda: stop_stimulation())
+stop.config(command=lambda: stop_stimulation())
 
 #interface.root.protocol("WM_DELETE_WINDOW", on_closing)
 running = True
@@ -113,7 +112,7 @@ while running:
     send.place(x=400, y=500, anchor=tk.CENTER)
     
     start.place(x=218, y=675, width=172, height=58)
-    end.place(x=418, y=675, width=172, height=58)
+    stop.place(x=418, y=675, width=172, height=58)
     root.config(menu=menubar)
     if status == "on":
         start_stimulation()
