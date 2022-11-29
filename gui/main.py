@@ -7,12 +7,20 @@ import cv2 as cv    #pip install opencv-python
 import pyautogui    #pip install PyAutoGUI
 import PIL.Image as Image
 import PIL.ImageTk as ImageTk
+from loopit import LoopIT
 
 status = ""
 
 def on_closing():
     global running
     running = False
+    
+######### LoopIT
+loopit = LoopIT(host='127.0.0.1', port=1219)
+loopit.set_mode(module_name = "fes",
+            module_index = "0",
+            mode_name = "current_mode")
+
 
 ######### GUI
 root = tk.Tk()
@@ -64,13 +72,17 @@ def send_to_loopit_callback():
         converted_ipi = 1/ipi * 10**9 # formaula for Hz to nanosecond period is 1/Hz * 10**9
         
         # set loopit variables
-    
-    #
+        loopit.inter_pulse_interval = str(converted_ipi)
+        loopit.amplitude_A = str(converted_amp)
+        loopit.amplitude_B = str(-converted_amp)
+        loopit.pulsewidth_A = str(converted_pw)
+        loopit.pulsewidth_B = str(converted_pw)
     
         send.configure(fg="black", activeforeground="black", text="Send to LoopIT")
     except: # warn the user
         send.configure(fg="red", activeforeground="red", text="Please set parameters")
-    
+
+
 send = tk.Button(text="Send to LoopIT", font=("Roboto-Bold", 16), borderwidth=3, highlightthickness=0, relief="raised", height=5, width=20, command=send_to_loopit_callback)
 
 start = tk.Button(text="START", font=("Roboto-Bold", 16), borderwidth=3, highlightthickness=0, relief="raised", height=5, width=20)
