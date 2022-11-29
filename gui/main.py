@@ -8,6 +8,7 @@ import pyautogui    #pip install PyAutoGUI
 import PIL.Image as Image
 import PIL.ImageTk as ImageTk
 from loopit import LoopIT
+import time
 
 status = ""
 
@@ -36,7 +37,7 @@ resized_image= img.resize((150,51), Image.ANTIALIAS)
 new_image= ImageTk.PhotoImage(resized_image)
 canvas.create_image(10,10, anchor=tk.NW, image=new_image)
 
-header = canvas.create_text(400.0, 91.0, text="LoopIT", fill="black", font=("Roboto-Bold", int(30.0)))
+header = canvas.create_text(400.0, 50.0, text="LoopIT", fill="black", font=("Roboto-Bold", int(30.0)))
 
 
 ######## Parameter controls
@@ -54,9 +55,7 @@ ipi_label = canvas.create_text(295, 375, text="Frequency (Hz)", fill="black", fo
 
 
 ######## Buttons
-menubar = tk.Menu(root)
-
-
+    
 def send_to_loopit_callback():
     # read the text boxes
     try:
@@ -110,7 +109,7 @@ stop = tk.Button(text="STOP", font=("Roboto-Bold", 16), borderwidth=3, highlight
 # initialize stop as disabled
 stop["state"] = "disabled"
 
-info = canvas.create_text(400.0, 650, text="Start Stimulation", fill="black", font=("Roboto-Medium", 20))
+info = canvas.create_text(400.0, 650, text="Stimulation Status", fill="black", font=("Roboto-Medium", 20))
 
 
 ######## Event loop
@@ -124,4 +123,3 @@ while running:
     
     start.place(x=218, y=675, width=172, height=58)
     stop.place(x=418, y=675, width=172, height=58)
-    root.config(menu=menubar)
