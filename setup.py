@@ -25,6 +25,7 @@ setup(
     download_url="https://github.com/ethanrich/tool-pyLoopIT.git",
     license="MIT",
     packages=find_packages(),
+    entry_points={'console_scripts': ['loopit=loopit.gui.main:main']},
     install_requires=requirements,
     classifiers=[
         "Development Status :: 3 - Alpha",

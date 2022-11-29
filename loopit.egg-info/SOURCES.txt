@@ -6,5 +6,8 @@ loopit/wrapper.py
 loopit.egg-info/PKG-INFO
 loopit.egg-info/SOURCES.txt
 loopit.egg-info/dependency_links.txt
+loopit.egg-info/entry_points.txt
 loopit.egg-info/requires.txt
 loopit.egg-info/top_level.txt
+loopit/gui/__init__.py
+loopit/gui/main.py
