@@ -33,9 +33,9 @@ root.protocol("WM_DELETE_WINDOW", on_closing)
 root.resizable(False, False)
 root.title("LoopIT Interface")
 root.geometry("800x800+500+100")
-canvas = tk.Canvas(root, bg="#1C4E80", height=800, width=800, bd=0, highlightthickness=0, relief="ridge")
+canvas = tk.Canvas(root, bg="#226E84", height=800, width=800, bd=0, highlightthickness=0, relief="ridge")
 canvas.place(x=0, y=0)
-
+# logo
 img= (Image.open(os.path.join(os.path.dirname(__file__), "logo.jpg")))
 resized_image= img.resize((150,51), Image.ANTIALIAS)
 new_image= ImageTk.PhotoImage(resized_image)
