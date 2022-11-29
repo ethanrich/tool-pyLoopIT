@@ -38,6 +38,7 @@ new_image= ImageTk.PhotoImage(resized_image)
 canvas.create_image(10,10, anchor=tk.NW, image=new_image)
 
 header = canvas.create_text(400.0, 50.0, text="LoopIT", fill="black", font=("Roboto-Bold", int(30.0)))
+info = canvas.create_text(400.0, 650, text="Stimulation Status", fill="black", font=("Roboto-Medium", 20))
 
 
 ######## Parameter controls
@@ -100,26 +101,27 @@ def status_stimulation(msg):
     elif status == "on":
         stop["state"] = "normal"
         start["state"] = "disabled"
-        canvas.itemconfig(info, text="STIM ON", fill="red", font=('Impact', -50))
+        canvas.itemconfig(info, text="STIM ON", fill="red", font=('Roboto-Bold', -50))
 
 send = tk.Button(text="Send to LoopIT", font=("Roboto-Bold", 16), borderwidth=3, highlightthickness=0, relief="raised", height=5, width=20, command=send_to_loopit_callback)
-
 start = tk.Button(text="START", font=("Roboto-Bold", 16), borderwidth=3, highlightthickness=0, relief="raised", height=5, width=20, command=start_stimulation_callback)
 stop = tk.Button(text="STOP", font=("Roboto-Bold", 16), borderwidth=3, highlightthickness=0, relief="raised", height=5, width=20, command=stop_stimulation_callback)
 # initialize stop as disabled
 stop["state"] = "disabled"
 
-info = canvas.create_text(400.0, 650, text="Stimulation Status", fill="black", font=("Roboto-Medium", 20))
-
-
 ######## Event loop
-running = True
-while running:
-    root.update()
-    amplitude_switch.place(x=500, y=175, anchor=tk.CENTER)
-    pw_text.place(x=425, y=275, anchor=tk.CENTER)
-    ipi_text.place(x=425, y=375, anchor=tk.CENTER)
-    send.place(x=400, y=500, anchor=tk.CENTER)
-    
-    start.place(x=218, y=675, width=172, height=58)
-    stop.place(x=418, y=675, width=172, height=58)
+
+amplitude_switch.place(x=500, y=175, anchor=tk.CENTER)
+pw_text.place(x=425, y=275, anchor=tk.CENTER)
+ipi_text.place(x=425, y=375, anchor=tk.CENTER)
+send.place(x=400, y=500, anchor=tk.CENTER)
+
+start.place(x=218, y=675, width=172, height=58)
+stop.place(x=418, y=675, width=172, height=58)
+
+quit = tk.Button(root, text="Exit", font=("Roboto-Bold", 14), borderwidth=3, highlightthickness=0, relief="raised", height=3, width=5, command=root.destroy)
+quit.place(x=700, y=20)
+root.mainloop()
+# running = True
+# while running:
+#     root.update()
