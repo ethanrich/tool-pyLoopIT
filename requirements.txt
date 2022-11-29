@@ -1,3 +1,6 @@
 setuptools
 numpy
 time
+tk
+opencv-python
+pyautogui
