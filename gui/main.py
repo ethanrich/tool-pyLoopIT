@@ -72,26 +72,30 @@ def send_to_loopit_callback():
         converted_ipi = 1/ipi * 10**9 # formaula for Hz to nanosecond period is 1/Hz * 10**9
         
         # set loopit variables
-        loopit.inter_pulse_interval = str(converted_ipi)
         loopit.amplitude_A = str(converted_amp)
         loopit.amplitude_B = str(-converted_amp)
         loopit.pulsewidth_A = str(converted_pw)
         loopit.pulsewidth_B = str(converted_pw)
+        loopit.inter_pulse_interval = str(converted_ipi)
     
         send.configure(fg="black", activeforeground="black", text="Send to LoopIT")
     except: # warn the user
         send.configure(fg="red", activeforeground="red", text="Please set parameters")
+        
+def start_stimulation_callback():
+    loopit.start_stimulation()
 
+def stop_stimulation_callback():
+    loopit.stop_stimulation()
 
 send = tk.Button(text="Send to LoopIT", font=("Roboto-Bold", 16), borderwidth=3, highlightthickness=0, relief="raised", height=5, width=20, command=send_to_loopit_callback)
 
-start = tk.Button(text="START", font=("Roboto-Bold", 16), borderwidth=3, highlightthickness=0, relief="raised", height=5, width=20)
-stop = tk.Button(text="STOP", font=("Roboto-Bold", 16), borderwidth=3, highlightthickness=0, relief="raised", height=5, width=20)
+start = tk.Button(text="START", font=("Roboto-Bold", 16), borderwidth=3, highlightthickness=0, relief="raised", height=5, width=20, command=start_stimulation_callback)
+stop = tk.Button(text="STOP", font=("Roboto-Bold", 16), borderwidth=3, highlightthickness=0, relief="raised", height=5, width=20, command=stop_stimulation_callback)
+# initialize stop as disabled
+stop["state"] = "disabled"
 
 info = canvas.create_text(400.0, 650, text="Start Stimulation", fill="black", font=("Roboto-Medium", 20))
-
-# When started
-stop["state"] = "disabled"
 
 
 ######## Set Stim status
@@ -120,7 +124,6 @@ def status_playing(yeter):
 start.config(command=lambda: start_stimulation())
 stop.config(command=lambda: stop_stimulation())
 
-#interface.root.protocol("WM_DELETE_WINDOW", on_closing)
 running = True
 while running:
     root.update()

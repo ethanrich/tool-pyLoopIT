@@ -14,14 +14,14 @@ if __name__ == "__main__":
     # get device configuration to view valid parameters and values
     loopit.get_device_config()
     # # set some parameters
-    # loopit.inter_pulse_interval = "20000000" # 50 hz == 20000000 nanosecond period
-    # loopit.amplitude_A = "1000000" # one milliampere of current
-    # loopit.amplitude_A = "-1000000"
-    # loopit.pulsewidth_A = "200000" # 200 microsecond pulse width
-    # loopit.pulsewidth_B = "200000"
-    # # start stimulation
-    # loopit.start_stimulation()
-    # # wait a few seconds
-    # time.sleep(3)
-    # # stop stimulation
-    # loopit.stop_stimulation()
+    loopit.inter_pulse_interval = "20000000" # 50 hz == 20000000 nanosecond period
+    loopit.amplitude_A = "1000000" # one milliampere of current
+    loopit.amplitude_B = "-1000000"
+    loopit.pulsewidth_A = "200000" # 200 microsecond pulse width
+    loopit.pulsewidth_B = "200000"
+    # start stimulation
+    loopit.start_stimulation()
+    # wait a few seconds
+    time.sleep(3)
+    # stop stimulation
+    loopit.stop_stimulation()
