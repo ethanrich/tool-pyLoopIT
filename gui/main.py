@@ -67,8 +67,10 @@ def send_to_loopit_callback():
         loopit.pulsewidth_A = str(converted_pw)
         loopit.pulsewidth_B = str(converted_pw)
         loopit.inter_pulse_interval = str(converted_ipi)
-    
-        send.configure(fg="black", activeforeground="black", text="Send to LoopIT")
+
+        # flash a status message
+        send.configure(fg="green", activeforeground="green", text="Parameters sent!")
+        send.after(2000, lambda: send.config(fg="black", activeforeground="black", text="Send to LoopIT"))
     except: # warn the user
         send.configure(fg="red", activeforeground="red", text="Please set parameters")
         
