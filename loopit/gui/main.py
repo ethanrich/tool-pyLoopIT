@@ -80,6 +80,7 @@ class MainApplication(tk.Tk):
             self.loopit.set_mode(module_name = "fes",
                         module_index = "0",
                         mode_name = "current_mode")
+            self.canvas.itemconfig(self.connection, text="Device connected", fill="#005208", font=("Roboto-Bold", 24))
         except:
             self.loopit = None
             self.canvas.itemconfig(self.connection, text="Device not found, please connect and restart application", fill="maroon", font=("Roboto-Bold", 18))
