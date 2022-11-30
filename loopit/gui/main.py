@@ -21,7 +21,7 @@ def check_connection_status():
         canvas.itemconfig(connection, text="Device not connected", fill="red", font=("Roboto-Bold", 24))
         return False
         
-
+# TODO start up GUI window even when LoopIT is not connected
 loopit = LoopIT(host='127.0.0.1', port=1219)
 loopit.set_mode(module_name = "fes",
             module_index = "0",

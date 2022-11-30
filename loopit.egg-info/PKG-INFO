@@ -43,6 +43,14 @@ python test.py
 
 In this file, you will see how certain values must be given to connect to the LoopIT. Then, you can send any command you want as a "parameter" and "value". All parameters and values must be strings.
 
+# GUI
+
+After pip installing this repository, you can simply run 
+```
+loopit
+```
+in your command line. Note that the GUI has less functionality than the examples shown in test.py. 
+
 # Parameters
 
 Please see your LoopIT device guide for a list of parameters and values. 
