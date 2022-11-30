@@ -26,6 +26,7 @@ loopit = LoopIT(host='127.0.0.1', port=1219)
 loopit.set_mode(module_name = "fes",
             module_index = "0",
             mode_name = "current_mode")
+loopit.get_device_config()
 
 ######### GUI
 root = tk.Tk()

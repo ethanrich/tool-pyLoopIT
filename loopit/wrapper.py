@@ -23,6 +23,7 @@ class LoopIT(Client):
 
     def set_mode(self, module_name, module_index, mode_name):
         self.module_name, self.module_index, self.mode_name = module_name, module_index, mode_name
+        self.get_device_config()
 
     def query(self):
         # test the connection
