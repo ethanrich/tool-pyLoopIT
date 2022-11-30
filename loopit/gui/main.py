@@ -37,7 +37,7 @@ class MainApplication(tk.Tk):
 
         # buttons
         self.send = tk.Button(text="Send to LoopIT", font=("Roboto-Bold", 16), borderwidth=3, highlightthickness=0, relief="raised", 
-                                height=5, width=20, command=self.send_to_loopit_callback)
+                                height=3, width=15, command=self.send_to_loopit_callback)
         self.start = tk.Button(text="START", font=("Roboto-Bold", 16), borderwidth=3, highlightthickness=0, relief="raised", 
                                 height=5, width=20, command=self.start_stimulation_callback)
         self.stop = tk.Button(text="STOP", font=("Roboto-Bold", 16), borderwidth=3, highlightthickness=0, relief="raised", 
@@ -45,8 +45,8 @@ class MainApplication(tk.Tk):
         # initialize stop as disabled
         self.stop["state"] = "disabled"
         self.quit = tk.Button(self, text="Exit", font=("Roboto-Bold", 14), borderwidth=3, highlightthickness=0, relief="raised", 
-                                height=3, width=5, command=self.destroy)
-        self.quit.place(x=706, y=6)
+                                height=2, width=5, command=self.destroy)
+        self.quit.place(x=720, y=6)
 
         # placement
         # logo and titles
