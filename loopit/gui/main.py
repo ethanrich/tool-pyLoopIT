@@ -23,10 +23,10 @@ class MainApplication(tk.Tk):
         self.geometry("800x800+500+100")
         
         # logo
-        img = (Image.open(os.path.join(os.path.dirname(__file__), "logo.jpg")))
-        resized_image = img.resize((150,51), Image.ANTIALIAS)
-        new_image = ImageTk.PhotoImage(resized_image)
-        self.logo_button = tk.Button(image=new_image, borderwidth=0, highlightthickness=0,
+        self.img = Image.open(os.path.join(os.path.dirname(__file__), "logo.jpg"))
+        self.resized_image = self.img.resize((150,51), Image.ANTIALIAS)
+        self.new_image = ImageTk.PhotoImage(self.resized_image)
+        self.logo_button = tk.Button(self, image=self.new_image, borderwidth=0, highlightthickness=0,
                         command=self.easter_egg)
 
         # parameter inputs
