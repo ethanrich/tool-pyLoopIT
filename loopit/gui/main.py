@@ -15,7 +15,7 @@ def check_connection_status():
     # check for the device
     try:
         loopit.query()
-        canvas.itemconfig(connection, text="Device connected", fill="green", font=("Roboto-Bold", 24))
+        canvas.itemconfig(connection, text="Device connected", fill="#005208", font=("Roboto-Bold", 24))
         return True
     except:
         canvas.itemconfig(connection, text="Device not connected", fill="red", font=("Roboto-Bold", 24))
@@ -26,7 +26,6 @@ loopit = LoopIT(host='127.0.0.1', port=1219)
 loopit.set_mode(module_name = "fes",
             module_index = "0",
             mode_name = "current_mode")
-loopit.get_device_config()
 
 ######### GUI
 root = tk.Tk()
@@ -34,7 +33,7 @@ root.protocol("WM_DELETE_WINDOW", on_closing)
 root.resizable(False, False)
 root.title("LoopIT Interface")
 root.geometry("800x800+500+100")
-canvas = tk.Canvas(root, bg="#226E84", height=800, width=800, bd=0, highlightthickness=0, relief="ridge")
+canvas = tk.Canvas(root, bg="#4f966d", height=800, width=800, bd=0, highlightthickness=0, relief="ridge")
 canvas.place(x=0, y=0)
 # logo
 img= (Image.open(os.path.join(os.path.dirname(__file__), "logo.jpg")))
