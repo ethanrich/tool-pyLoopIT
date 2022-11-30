@@ -36,9 +36,14 @@ root.geometry("800x800+500+100")
 canvas = tk.Canvas(root, bg="#4f966d", height=800, width=800, bd=0, highlightthickness=0, relief="ridge")
 canvas.place(x=0, y=0)
 # logo
+def easter_egg():
+    root.title("Be kind, lend a Helping Hand")
+    
 img= (Image.open(os.path.join(os.path.dirname(__file__), "logo.jpg")))
 resized_image= img.resize((150,51), Image.ANTIALIAS)
 new_image= ImageTk.PhotoImage(resized_image)
+logo_button = tk.Button(image=new_image, borderwidth=0, highlightthickness=0,
+                 command=easter_egg)
 
 ######## Parameter controls
 
@@ -113,7 +118,7 @@ stop["state"] = "disabled"
 
 ######## Placement
 # logo and titles
-canvas.create_image(10,10, anchor=tk.NW, image=new_image)
+logo_button.place(relx=0.1, rely=0.04, anchor=tk.CENTER)
 header = canvas.create_text(400.0, 50.0, text="LoopIT", fill="white", font=("Roboto-Bold", 30))
 connection = canvas.create_text(400.0, 85.0, text="", fill="white", font=("Roboto-Bold", 14))
 info = canvas.create_text(400.0, 650, text="Stimulation Status", fill="white", font=("Roboto-Medium", 20))
@@ -135,7 +140,7 @@ stop.place(x=418, y=675, width=172, height=58)
 
 ######## Event loop
 quit = tk.Button(root, text="Exit", font=("Roboto-Bold", 14), borderwidth=3, highlightthickness=0, relief="raised", height=3, width=5, command=root.destroy)
-quit.place(x=700, y=20)
+quit.place(x=706, y=6)
 
 def main():
 
