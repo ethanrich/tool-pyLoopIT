@@ -7,27 +7,91 @@ import os
 def on_closing():
     global running
     running = False
+    
+    
+# TODO add loopit class to module component?
+    
+    
+class ModuleComponent():
+    def __init__(self, root, 
+                 name='FES Module', 
+                 switch_name="Amplitude (0-30 mA)",
+                 param_1_name="Frequency (Hz)",
+                 param_2_name="Pulse width (μs)"):
+        # get root for Tkinter
+        self.root = root
+        
+        # color settings
+        self.fes_module_color = "#E8C492"
+        self.text_color = "black"
+        
+        # placement settings        
+        module_dims = (200, 700)
+        module_loc = (0.45, 0.42)
+        module_label_loc = (0.145, 0.22)
+        
+        switch_dims = (200, 30)
+        switch_loc = (0.49, 0.32)
+        switch_label_loc = (0.15, 0.32)
+        
+        param_1_dims = (1, 5)
+        param_1_loc = (0.465, 0.45)
+        param_1_label_loc = (0.15, 0.45)
+        
+        param_2_dims = (1, 5)
+        param_2_loc = (0.465, 0.55)
+        param_2_label_loc = (0.15, 0.55)
+    
+        # module section settings
+        self.module_border = tk.Frame(self.root, height=module_dims[0], width=module_dims[1], bg=self.fes_module_color, relief="raised", highlightthickness=5, highlightcolor="#a2c4c9")
+        self.module_border.place(relx=module_loc[0], rely=module_loc[1], anchor=tk.CENTER)
+        
+        self.module_label = tk.Label(self.root, text="FES Module", bg=self.fes_module_color, fg=self.text_color, font=("Roboto-Bold", 22),
+                                  relief="raised", highlightthickness=5, highlightcolor="#a2c4c9")
+        self.module_label.place(relx=module_label_loc[0], rely=module_label_loc[1], anchor=tk.CENTER)
+    
+        # parameter labels and inputs
+        # inputs
+        self.switch = tk.Scale(from_= 0, to=30, orient=tk.HORIZONTAL, length=switch_dims[0], width=switch_dims[1], activebackground="#a2c4c9", 
+                        bg="#a2c4c9", highlightcolor="#a2c4c9", highlightbackground="#a2c4c9", fg="black", troughcolor="white", font=("Roboto-Bold", 12))
+        self.switch.place(relx=switch_loc[0], rely=switch_loc[1], anchor=tk.CENTER)
+        
+        self.param_1 = tk.Text(self.root, height = param_1_dims[0], width = param_1_dims[1], font=("Roboto", 16))
+        self.param_1.place(relx=param_1_loc[0], rely=param_1_loc[1], anchor=tk.CENTER)        
+        
+        self.param_2 = tk.Text(self.root, height = param_2_dims[0], width = param_2_dims[1], font=("Roboto", 16))
+        self.param_2.place(relx=param_2_loc[0], rely=param_2_loc[1], anchor=tk.CENTER)
+                
+        # labels
+        self.switch_label = tk.Label(self.root, text=switch_name, bg=self.fes_module_color, fg=self.text_color, font=("Roboto-Bold", 16))
+        self.switch_label.place(relx=switch_label_loc[0], rely=switch_label_loc[1], anchor=tk.CENTER)   
+        
+        self.param_1_label = tk.Label(self.root, text=param_1_name, bg=self.fes_module_color, fg=self.text_color, font=("Roboto-Bold", 16))
+        self.param_1_label.place(relx=param_1_label_loc[0], rely=param_1_label_loc[1], anchor=tk.CENTER)
+        
+        self.param_2_label = tk.Label(self.root, text=param_2_name, bg=self.fes_module_color, fg=self.text_color, font=("Roboto-Bold", 16))
+        self.param_2_label.place(relx=param_2_label_loc[0], rely=param_2_label_loc[1], anchor=tk.CENTER)
+
 
 class LoopITInterface(tk.Tk):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, module_name='fes', module_index='0', **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
+        # loopit module
+        self.module_name = module_name
+        self.module_index = module_index
+        
+        # FES module components
+        self.fes_module = ModuleComponent(self)
+        self.module_border = self.fes_module.module_border
+        self.module_label = self.fes_module.module_label
+        self.switch = self.fes_module.switch
+        self.param_1 = self.fes_module.param_1
+        self.param_2 = self.fes_module.param_2
         
         # component sizing parameters
         window_dims = (800, 500)
         logo_dims = (112,37)
         logo_loc = (0.08, 0.05)
-        
-        fes_module_dims = (200, 700)
-        fes_module_loc = (0.45, 0.42)
-        fes_module_label_loc = (0.145, 0.22)
-        
-        amp_switch_dims = (200, 30) # l, w
-        pw_text_dims = (1, 5)
-        ipi_text_dims = (1, 5)
-        
-        ipi_label_loc = (295, 375)
-        pw_label_loc = (235, 275)
-        amplitude_label_loc = (270, 175)
         
         send_dims = (3, 18)
         send_loc = (0.8, 0.4)
@@ -51,7 +115,6 @@ class LoopITInterface(tk.Tk):
         self.connected_color = "#5D9E7E"
         self.text_color = "black"
         self.warning = "#D15252"
-        self.fes_module_color = "#E8C492"
 
         # background
         self.configure(bg=self.background_color)
@@ -69,17 +132,9 @@ class LoopITInterface(tk.Tk):
         self.logo_button = tk.Button(self, image=self.new_image, borderwidth=0, highlightthickness=0,
                         command=self.easter_egg)
         self.logo_button.place(relx=logo_loc[0], rely=logo_loc[1], anchor=tk.CENTER)
-        
-        # module section
-        self.fes_module = tk.Frame(self, height=fes_module_dims[0], width=fes_module_dims[1], bg=self.fes_module_color, relief="raised", highlightthickness=5, highlightcolor="#a2c4c9")
-        self.fes_module.place(relx=fes_module_loc[0], rely=fes_module_loc[1], anchor=tk.CENTER)
-        
-        self.fes_label = tk.Label(self, text="FES Module", bg=self.fes_module_color, fg=self.text_color, font=("Roboto-Bold", 22),
-                                  relief="raised", highlightthickness=5, highlightcolor="#a2c4c9")
-        self.fes_label.place(relx=fes_module_label_loc[0], rely=fes_module_label_loc[1], anchor=tk.CENTER)
 
-        # buttons
-        # send
+        # trigger buttons
+        # send data button
         self.send = tk.Button(text="Send to LoopIT", font=("Roboto-Bold", 16), borderwidth=3, highlightthickness=0, relief="raised", 
                                 height=send_dims[0], width=send_dims[1], command=self.send_to_loopit_callback)
         self.send.place(relx=send_loc[0], rely=send_loc[1], anchor=tk.CENTER)
@@ -94,6 +149,7 @@ class LoopITInterface(tk.Tk):
         # initializ)
         self.stop["state"] = "disabled"
         
+        # exit app
         self.quit = tk.Button(self, text="Exit", font=("Roboto-Bold", 14), borderwidth=3, highlightthickness=0, relief="raised", 
                                 height=quit_dims[0], width=quit_dims[1], command=self.destroy)
         self.quit.place(relx=quit_loc[0], rely=quit_loc[1], anchor=tk.CENTER)
@@ -109,29 +165,6 @@ class LoopITInterface(tk.Tk):
         self.stim_status = tk.Label(self, text="Stimulation Status", bg=self.background_color, fg=self.title_color, font=("Roboto-Medium", 20))
         self.stim_status.place(relx=0.5, rely=0.7, anchor=tk.CENTER)
 
-
-        # parameter labels and inputs
-        # inputs
-        self.amplitude_switch = tk.Scale(from_= 0, to=30, orient=tk.HORIZONTAL, length=200, width=30, activebackground="#a2c4c9", 
-                        bg="#a2c4c9", highlightcolor="#a2c4c9", highlightbackground="#a2c4c9", fg="black", troughcolor="white", font=("Roboto-Bold", 12))
-        self.amplitude_switch.place(relx=0.49, rely=0.32, anchor=tk.CENTER)
-        
-        self.ipi_text = tk.Text(self, height = 1, width = 15, font=("Roboto", 16))
-        self.ipi_text.place(relx=0.465, rely=0.45, anchor=tk.CENTER)        
-        
-        self.pw_text = tk.Text(self, height = 1, width = 15, font=("Roboto", 16))
-        self.pw_text.place(relx=0.465, rely=0.55, anchor=tk.CENTER)
-                
-        # labels
-        self.amplitude_label = tk.Label(self, text="Amplitude (0-30 mA)", bg=self.fes_module_color, fg=self.text_color, font=("Roboto-Bold", 16))
-        self.amplitude_label.place(relx=0.15, rely=0.32, anchor=tk.CENTER)   
-        
-        self.ipi_label = tk.Label(self, text="Frequency (Hz)", bg=self.fes_module_color, fg=self.text_color, font=("Roboto-Bold", 16))
-        self.ipi_label.place(relx=0.15, rely=0.45, anchor=tk.CENTER)
-        
-        self.pw_label = tk.Label(self, text="Pulse width (μs)", bg=self.fes_module_color, fg=self.text_color, font=("Roboto-Bold", 16))
-        self.pw_label.place(relx=0.15, rely=0.55, anchor=tk.CENTER)
-
         # attempt connection to a LoopIT
         self.connect_to_loopit()
         
@@ -139,8 +172,8 @@ class LoopITInterface(tk.Tk):
         # try to connect or warn the user to restart
         try:
             self.loopit = LoopIT(host='127.0.0.1', port=1219)
-            self.loopit.set_mode(module_name = "fes",
-                        module_index = "0",
+            self.loopit.set_mode(module_name = self.module_name,
+                        module_index = self.module_index,
                         mode_name = "current_mode")
             self.connection.config(text="Device connected", fg=self.connected_color, font=("Roboto-Bold", 24))
         except:
@@ -166,9 +199,9 @@ class LoopITInterface(tk.Tk):
         if result:
             # read the text boxes
             try:
-                amp = float(self.amplitude_switch.get())
-                pw = float(self.pw_text.get("1.0", tk.END))
-                ipi = float(self.ipi_text.get("1.0", tk.END))
+                amp = float(self.switch.get())
+                pw = float(self.param_2.get("1.0", tk.END))
+                ipi = float(self.param_1.get("1.0", tk.END))
                 
                 # convert amplitude from milliamps to 0.0000010 A
                 converted_amp = amp * 30000000
