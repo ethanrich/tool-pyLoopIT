@@ -124,13 +124,13 @@ class LoopITInterface(tk.Tk):
                 
         # labels
         self.ipi_label = tk.Label(self, text="Frequency (Hz)", bg=self.fes_module_color, fg=self.text_color, font=("Roboto-Bold", 16))
-        self.ipi_label.place(relx=0.1165, rely=0.4, anchor=tk.CENTER)
+        self.ipi_label.place(relx=0.15, rely=0.4, anchor=tk.CENTER)
         
         self.pw_label = tk.Label(self, text="Pulse width (μs)", bg=self.fes_module_color, fg=self.text_color, font=("Roboto-Bold", 16))
-        self.pw_label.place(relx=0.135, rely=0.5, anchor=tk.CENTER)
+        self.pw_label.place(relx=0.15, rely=0.5, anchor=tk.CENTER)
         
         self.amplitude_label = tk.Label(self, text="Amplitude (0-30 mA)", bg=self.fes_module_color, fg=self.text_color, font=("Roboto-Bold", 16))
-        self.amplitude_label.place(relx=0.145, rely=0.3, anchor=tk.CENTER)   
+        self.amplitude_label.place(relx=0.15, rely=0.3, anchor=tk.CENTER)   
 
         # attempt connection to a LoopIT
         self.connect_to_loopit()
