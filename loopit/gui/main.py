@@ -114,23 +114,23 @@ class LoopITInterface(tk.Tk):
         # inputs
         self.amplitude_switch = tk.Scale(from_= 0, to=30, orient=tk.HORIZONTAL, length=200, width=30, activebackground="#a2c4c9", 
                         bg="#a2c4c9", highlightcolor="#a2c4c9", highlightbackground="#a2c4c9", fg="black", troughcolor="white", font=("Roboto-Bold", 12))
-        self.amplitude_switch.place(relx=0.49, rely=0.3, anchor=tk.CENTER)
-        
-        self.pw_text = tk.Text(self, height = 1, width = 15, font=("Roboto", 16))
-        self.pw_text.place(relx=0.465, rely=0.5, anchor=tk.CENTER)
+        self.amplitude_switch.place(relx=0.49, rely=0.32, anchor=tk.CENTER)
         
         self.ipi_text = tk.Text(self, height = 1, width = 15, font=("Roboto", 16))
-        self.ipi_text.place(relx=0.465, rely=0.4, anchor=tk.CENTER)
+        self.ipi_text.place(relx=0.465, rely=0.45, anchor=tk.CENTER)        
+        
+        self.pw_text = tk.Text(self, height = 1, width = 15, font=("Roboto", 16))
+        self.pw_text.place(relx=0.465, rely=0.55, anchor=tk.CENTER)
                 
         # labels
+        self.amplitude_label = tk.Label(self, text="Amplitude (0-30 mA)", bg=self.fes_module_color, fg=self.text_color, font=("Roboto-Bold", 16))
+        self.amplitude_label.place(relx=0.15, rely=0.32, anchor=tk.CENTER)   
+        
         self.ipi_label = tk.Label(self, text="Frequency (Hz)", bg=self.fes_module_color, fg=self.text_color, font=("Roboto-Bold", 16))
-        self.ipi_label.place(relx=0.15, rely=0.4, anchor=tk.CENTER)
+        self.ipi_label.place(relx=0.15, rely=0.45, anchor=tk.CENTER)
         
         self.pw_label = tk.Label(self, text="Pulse width (μs)", bg=self.fes_module_color, fg=self.text_color, font=("Roboto-Bold", 16))
-        self.pw_label.place(relx=0.15, rely=0.5, anchor=tk.CENTER)
-        
-        self.amplitude_label = tk.Label(self, text="Amplitude (0-30 mA)", bg=self.fes_module_color, fg=self.text_color, font=("Roboto-Bold", 16))
-        self.amplitude_label.place(relx=0.15, rely=0.3, anchor=tk.CENTER)   
+        self.pw_label.place(relx=0.15, rely=0.55, anchor=tk.CENTER)
 
         # attempt connection to a LoopIT
         self.connect_to_loopit()
