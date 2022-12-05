@@ -31,7 +31,7 @@ After pip installing this repository, you can simply run
 ```
 loopit
 ```
-in your command line. The GUI will appear and detect a connected LoopIT automatically. The interface allows you to set parameters and trigger stimulation.
+in your command line. The GUI will appear and detect a connected LoopIT automatically. The interface allows you to set parameters and trigger stimulation. In the below example, the GUI did not find a LoopIT device and therefore displayed a message about it.
 <p align="center">
   <img src="https://github.com/ethanrich/tool-pyLoopIT/blob/main/gui.PNG?raw=true" alt="gui"
         width="402" height="268"/>
