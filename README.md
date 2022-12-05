@@ -31,7 +31,12 @@ After pip installing this repository, you can simply run
 ```
 loopit
 ```
-in your command line. Note that the GUI has less functionality than the examples shown in test.py. 
+in your command line. The GUI will appear and detect a connected LoopIT automatically. The interface allows you to set parameters and trigger stimulation.
+<p align="center">
+  <img src="https://github.com/ethanrich/tool-pyLoopIT/blob/main/gui.PNG?raw=true" alt="gui"
+        width="402" height="268"/>
+</p>
+
 
 # Parameters
 
