@@ -3,11 +3,8 @@ import PIL.Image as Image
 import PIL.ImageTk as ImageTk
 from loopit import LoopIT
 import os
+from tkinter import messagebox
 
-def on_closing():
-    global running
-    running = False
-    
     
 # TODO add loopit class to module component?
     
@@ -76,6 +73,9 @@ class ModuleComponent():
 class LoopITInterface(tk.Tk):
     def __init__(self, *args, module_name='fes', module_index='0', **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
+        # set behavior of X button
+        self.protocol("WM_DELETE_WINDOW", self.on_closing)
+        
         # loopit module
         self.module_name = module_name
         self.module_index = module_index
@@ -102,9 +102,6 @@ class LoopITInterface(tk.Tk):
         stop_dims = (3, 10)
         stop_loc = (0.6, 0.85)
         
-        quit_dims = (2, 5)
-        quit_loc = (0.94, 0.06)
-        
         header_loc = (0.4, 0.02)
         connect_loc = (400, 85)
         stim_status_loc = (400, 650)
@@ -120,7 +117,6 @@ class LoopITInterface(tk.Tk):
         self.configure(bg=self.background_color)
 
         # window
-        self.protocol("WM_DELETE_WINDOW", on_closing)
         self.resizable(False, False)
         self.title("LoopIT Interface")
         self.geometry("{0}x{1}+500+100".format(window_dims[0], window_dims[1]))
@@ -148,11 +144,6 @@ class LoopITInterface(tk.Tk):
         self.stop.place(relx=stop_loc[0], rely=stop_loc[1], anchor=tk.CENTER)
         # initializ)
         self.stop["state"] = "disabled"
-        
-        # exit app
-        self.quit = tk.Button(self, text="Exit", font=("Roboto-Bold", 14), borderwidth=3, highlightthickness=0, relief="raised", 
-                                height=quit_dims[0], width=quit_dims[1], command=self.destroy)
-        self.quit.place(relx=quit_loc[0], rely=quit_loc[1], anchor=tk.CENTER)
 
         # placement
         # logo and titles
@@ -167,7 +158,11 @@ class LoopITInterface(tk.Tk):
 
         # attempt connection to a LoopIT
         self.connect_to_loopit()
-        
+       
+    def on_closing(self):
+        if messagebox.askokcancel("Quit", "Do you want to quit?"):
+            self.destroy() 
+     
     def connect_to_loopit(self):
         # try to connect or warn the user to restart
         try:
